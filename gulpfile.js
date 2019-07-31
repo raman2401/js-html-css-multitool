@@ -5,7 +5,7 @@ var stylish = require('jshint-stylish');
 var pump = require('pump');
 var util = require('gulp-util');
 var changed = require('gulp-changed');
-
+var critical = require('critical');
 
 
 var uglifyjs = require('uglify-js'); // can be a git checkout
@@ -34,7 +34,7 @@ gulp.task('Uglify-js', function(callback) {
     );
 });
 
-gulp.task('ChangedUglify', function(callback) {
+gulp.task('ChangedUglify-js', function(callback) {
 	pump([
 		gulp.src(['./**/*.js', '!./node_modules/**/*.js']),
 		changed('./minified-js'),
@@ -45,13 +45,5 @@ gulp.task('ChangedUglify', function(callback) {
 		);
 })
 
-gulp.task('compress', function (cb) {
-  var options = {};
-  pump([
-    gulp.src(['./**/*.js', '!./node_modules/**/*.js','!./node_modules/**/fcmmain.js']),
-      minify(options),
-      gulp.dest('../minifiedjs')
-    ],
-    cb
-  );
-});
+
+
